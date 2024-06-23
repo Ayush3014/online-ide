@@ -32,7 +32,11 @@ export const fetchS3Folder = async (
 
         const data = await s3.getObject(params).promise();
         if (data.Body) {
-          const fileData = data.Body;
+          // change
+          //   const fileData = data.Body;
+          const fileData = Buffer.isBuffer(data.Body)
+            ? data.Body
+            : Buffer.from(data.Body as string);
           const filePath = `${localPath}/${fileKey.replace(key, '')}`;
           await writeFile(filePath, fileData);
         }
