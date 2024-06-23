@@ -98,13 +98,18 @@ export const CodingPagePostPodCreation = () => {
           {/* change */}
           {socket && (
             <>
-              <Editor
-                socket={socket}
-                selectedFile={selectedFile}
-                onSelect={onSelect}
-                files={fileStructure}
-              />
-              <Terminal socket={socket} />
+              <div className="flex w-[60%]">
+                <Editor
+                  socket={socket}
+                  selectedFile={selectedFile}
+                  onSelect={onSelect}
+                  files={fileStructure}
+                />
+              </div>
+              <div className="flex w-[40%]">
+                {showOutput && <Output />}
+                <Terminal socket={socket} />
+              </div>
             </>
           )}
         </div>

@@ -5,7 +5,7 @@ export const Output = () => {
   const replId = searchParams.get('replId') ?? '';
 
   // domain name update
-  const URI = `http://localhost:3002`;
+  const URI = `http://localhost:3001`;
 
   return (
     <div className="bg-white h-[40vh]">
