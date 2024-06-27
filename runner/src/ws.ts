@@ -20,8 +20,9 @@ export function initWs(httpServer: HttpServer) {
     // add Auth checks here
     const host = socket.handshake.headers.host;
     console.log(`host is ${host}`);
-
     const replId = host?.split('.')[0];
+    // const replId = 'humanforclose';
+    console.log(replId);
 
     if (!replId) {
       socket.disconnect();
@@ -33,6 +34,7 @@ export function initWs(httpServer: HttpServer) {
       rootContent: await fetchDir('/workspace', ''),
     });
 
+    console.log('Socket loaded!!');
     initHandlers(socket, replId);
   });
 }
