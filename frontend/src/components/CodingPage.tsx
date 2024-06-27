@@ -61,11 +61,16 @@ export const CodingPagePostPodCreation = () => {
       socket.on('loaded', ({ rootContent }: { rootContent: RemoteFile[] }) => {
         setLoaded(true);
         setFileStructure(rootContent);
+        console.log('socket loaded');
       });
     }
   }, [socket]);
 
   const onSelect = (file: File) => {
+    if (!file) {
+      console.error('No file selected');
+      return;
+    }
     if (file.type === Type.DIRECTORY) {
       socket?.emit('fetchDir', file.path, (data: RemoteFile[]) => {
         setFileStructure((prev) => {
