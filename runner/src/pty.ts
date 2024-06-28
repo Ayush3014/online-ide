@@ -6,6 +6,7 @@ import path from 'path';
 const SHELL = process.platform === 'win32' ? 'cmd.exe' : 'bash';
 
 export class TerminalManager {
+  // property declaration
   private sessions: { [id: string]: { terminal: IPty; replId: string } } = {};
 
   //   private sessions: { [id: string]: Session } = {};  // for spawn
@@ -14,10 +15,11 @@ export class TerminalManager {
     this.sessions = {};
   }
 
+  // create a pseudo-terminal
   createPty(
     id: string,
     replId: string,
-    onData: (data: string, id: number) => void
+    onData: (data: string, id: number) => void // callback fun to handle incoming data
   ) {
     let term = fork(SHELL, [], {
       cols: 100,

@@ -20,8 +20,10 @@ export function initWs(httpServer: HttpServer) {
     // add Auth checks here
     const host = socket.handshake.headers.host;
     console.log(`host is ${host}`);
-    const replId = host?.split('.')[0];
+    const replId = host?.split('.')[0]; // ${replId}.domainName.com
     // const replId = 'humanforclose';
+
+    // update replId => it is passed as query params
     console.log(replId);
 
     if (!replId) {

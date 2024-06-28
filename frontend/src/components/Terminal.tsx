@@ -4,7 +4,7 @@ import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 const fitAddon = new FitAddon();
 
-// change
+// change, array buffer (binary data) to string
 function ab2str(buf: ArrayBuffer) {
   return String.fromCharCode.apply(null, Array.from(new Uint8Array(buf)));
 }

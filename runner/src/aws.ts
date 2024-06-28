@@ -11,6 +11,7 @@ const s3 = new S3({
   endpoint: process.env.S3_ENDPOINT,
 });
 
+// fetch from s3 to local after the creation of a project
 export const fetchS3Folder = async (
   key: string,
   localPath: string
@@ -34,6 +35,7 @@ export const fetchS3Folder = async (
         if (data.Body) {
           // change
           //   const fileData = data.Body;
+          // if buffer(binary data) then assign it to fileData, else convert to buffer and then assign
           const fileData = Buffer.isBuffer(data.Body)
             ? data.Body
             : Buffer.from(data.Body as string);
@@ -45,6 +47,7 @@ export const fetchS3Folder = async (
   }
 };
 
+// continuation token = token provided by previous listobjectsv2 response to fetch the next set of results
 export async function copyS3Folder(
   sourcePrefix: string,
   destinationPrefix: string,
@@ -78,7 +81,7 @@ export async function copyS3Folder(
       console.log(`Copied ${object.Key} to ${destinationKey}`);
     }
 
-    // check if the list was truncated and continue copying if necessary
+    // check if the list was truncated (when results are too large to return in a single response) and continue copying if necessary
     if (listedObjects.IsTruncated) {
       listParams.ContinuationToken = listedObjects.NextContinuationToken;
       await copyS3Folder(sourcePrefix, destinationPrefix, continuationToken);

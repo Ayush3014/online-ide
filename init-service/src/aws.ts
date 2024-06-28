@@ -15,6 +15,7 @@ export async function copyS3Folder(
 ): Promise<void> {
   try {
     // list all objects in the source folder
+    // prefix = folder
     const listParams = {
       Bucket: process.env.S3_BUCKET ?? '',
       Prefix: sourcePrefix,
@@ -25,7 +26,7 @@ export async function copyS3Folder(
 
     if (!listedObjects.Contents || listedObjects.Contents.length === 0) return;
 
-    // copy each object to the new location
+    // copy each object to the new location, key = path
     await Promise.all(
       listedObjects.Contents.map(async (object) => {
         if (!object.Key) return;
@@ -57,13 +58,17 @@ export async function copyS3Folder(
   }
 }
 
+// key = base path, filepath = path for a specific file
+export const saveToS3 = async (
+  key: string,
+  filePath: string,
+  content: string
+): Promise<void> => {
+  const params = {
+    Bucket: process.env.S3_BUCKET ?? '',
+    Key: `${key}${filePath}`,
+    Body: content,
+  };
 
-export const saveToS3 = async (key: string, filePath: string, content: string): Promise<void> => {
-    const params = {
-        Bucket: process.env.S3_BUCKET ?? "",
-        Key: `${key}${filePath}`,
-        Body: content
-    };
-
-    await s3.putObject(params).promise();
-}
+  await s3.putObject(params).promise();
+};
