@@ -5,11 +5,11 @@ export const Output = () => {
   const replId = searchParams.get('replId') ?? '';
 
   // domain name update
-  const URI = `http://localhost:3001`;
+  const URI = `http://${replId}.mydomain2.online`;
 
   return (
     <div className="bg-white h-[40vh]">
-      <iframe src={URI} height="100%" width="100%"></iframe>
+      <iframe src={`${URI}`} height="100%" width="100%"></iframe>
     </div>
   );
 };
