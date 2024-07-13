@@ -11,10 +11,10 @@ function useSocket(replId: string) {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    // ws://${replId}.domain.com
-    const newSocket = io(`http://localhost:3001`, {
-      query: { replId },
-    });
+    // const newSocket = io(`http://localhost:3001`, {
+    //   query: { replId },
+    // });
+    const newSocket = io(`ws://${replId}.mydomain1.online`);
 
     setSocket(newSocket);
 

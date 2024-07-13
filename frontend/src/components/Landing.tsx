@@ -32,7 +32,7 @@ function getRandomSlug() {
 }
 
 export default function Landing() {
-  const [language, setLanguage] = useState('python');
+  const [language, setLanguage] = useState('node-js');
   const [replId, setReplId] = useState(getRandomSlug());
 
   const [loading, setLoading] = useState(false);
