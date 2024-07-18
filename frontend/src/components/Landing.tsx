@@ -39,17 +39,17 @@ export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div id="container" className="p-5 flex flex-col items-center">
-      <h1 className="text-white">Online IDE</h1>
+    <div id="container" className="p-5 flex flex-col items-center gap-2">
+      <h1 className="text-white text-lg">Online IDE</h1>
       <input
-        className="mx-3 my-0 p-3 border border-solid border-[#ccc] rounded-[5px]"
+        className="mx-3 my-0 p-1 border border-solid border-[#ccc] rounded-[5px] text-black"
         onChange={(e) => setReplId(e.target.value)}
         type="text"
         placeholder="Repl ID"
         value={replId}
       />
       <select
-        className="mx-3 p-3 border border-solid border-[#ccc] rounded-[5px]"
+        className="mx-3 p-1 border border-solid border-[#ccc] rounded-[5px] text-black"
         name="language"
         id="language"
         onChange={(e) => setLanguage(e.target.value)}
@@ -58,7 +58,7 @@ export default function Landing() {
         <option value="python">Python</option>
       </select>
       <button
-        className="px-[10px] py-[20px] bg-[#007bff] text-white border-none rounded-[5px] cursor-pointer hover:bg-[#0056b3] "
+        className="px-[3px] py-[3px] bg-[#007bff] text-white border-none rounded-[5px] cursor-pointer hover:bg-[#0056b3] text-lg"
         disabled={loading}
         onClick={async () => {
           setLoading(true);

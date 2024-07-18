@@ -1,8 +1,8 @@
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CodingPage } from './components/CodingPage';
 import { CodingPagePostPodCreation } from './components/CodingPage';
 import Landing from './components/Landing';
-import './App.css';
 
 function App() {
   return (

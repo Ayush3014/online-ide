@@ -22,6 +22,7 @@ function copyS3Folder(sourcePrefix, destinationPrefix, continuationToken) {
         var _a;
         try {
             // list all objects in the source folder
+            // prefix = folder
             const listParams = {
                 Bucket: (_a = process.env.S3_BUCKET) !== null && _a !== void 0 ? _a : '',
                 Prefix: sourcePrefix,
@@ -30,7 +31,7 @@ function copyS3Folder(sourcePrefix, destinationPrefix, continuationToken) {
             const listedObjects = yield s3.listObjectsV2(listParams).promise();
             if (!listedObjects.Contents || listedObjects.Contents.length === 0)
                 return;
-            // copy each object to the new location
+            // copy each object to the new location, key = path
             yield Promise.all(listedObjects.Contents.map((object) => __awaiter(this, void 0, void 0, function* () {
                 var _a;
                 if (!object.Key)
@@ -56,12 +57,13 @@ function copyS3Folder(sourcePrefix, destinationPrefix, continuationToken) {
         }
     });
 }
+// key = base path, filepath = path for a specific file
 const saveToS3 = (key, filePath, content) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const params = {
-        Bucket: (_a = process.env.S3_BUCKET) !== null && _a !== void 0 ? _a : "",
+        Bucket: (_a = process.env.S3_BUCKET) !== null && _a !== void 0 ? _a : '',
         Key: `${key}${filePath}`,
-        Body: content
+        Body: content,
     };
     yield s3.putObject(params).promise();
 });

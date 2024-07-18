@@ -31,8 +31,8 @@ export const Editor = ({
   }, [selectedFile]);
 
   return (
-    <div>
-      <main className="flex">
+    <div className="h-full flex flex-col">
+      <main className="flex-1 flex overflow-hidden">
         <Sidebar>
           <FileTree
             rootDir={rootDir}
@@ -40,7 +40,9 @@ export const Editor = ({
             onSelect={onSelect}
           />
         </Sidebar>
-        <Code socket={socket} selectedFile={selectedFile} />
+        <div className="flex-1 overflow-hidden">
+          <Code socket={socket} selectedFile={selectedFile} />
+        </div>
       </main>
     </div>
   );

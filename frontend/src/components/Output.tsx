@@ -8,8 +8,8 @@ export const Output = () => {
   const URI = `http://${replId}.mydomain2.online`;
 
   return (
-    <div className="bg-white h-[40vh]">
-      <iframe src={`${URI}`} height="100%" width="100%"></iframe>
+    <div className="bg-white flex-1 min-h-0">
+      <iframe src={`${URI}`} className="w-full h-full border-none"></iframe>
     </div>
   );
 };

@@ -94,30 +94,30 @@ export const CodingPagePostPodCreation = () => {
   }
 
   return (
-    <div className="flex flex-col w-[100%]">
-      <div className="flex justify-end p-[10px]">
+    <div className="flex flex-col h-screen">
+      <div className="flex justify-end p-2">
         <button onClick={() => setShowOutput(!showOutput)}>See output</button>
       </div>
-      <div className="flex m-0 text-base w-[100%] ">
-        <div className="flex w-[100%]">
-          {/* change */}
-          {socket && (
-            <>
-              <div className="flex w-[60%]">
-                <Editor
-                  socket={socket}
-                  selectedFile={selectedFile}
-                  onSelect={onSelect}
-                  files={fileStructure}
-                />
-              </div>
-              <div className="flex w-[40%]">
-                {showOutput && <Output />}
+      <div className="flex flex-1 overflow-hidden ">
+        {/* change */}
+        {socket && (
+          <>
+            <div className="w-3/5 overflow-auto">
+              <Editor
+                socket={socket}
+                selectedFile={selectedFile}
+                onSelect={onSelect}
+                files={fileStructure}
+              />
+            </div>
+            <div className="w-2/5 flex flex-col">
+              {showOutput && <Output />}
+              <div className="flex-1 overflow-auto">
                 <Terminal socket={socket} />
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
