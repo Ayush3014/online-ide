@@ -1,4 +1,3 @@
-# online-ide
 ## Online IDE using AWS EKS Cluster
 
 This project is an online Integrated Development Environment (IDE) using an AWS EKS cluster. It involves the following services:
