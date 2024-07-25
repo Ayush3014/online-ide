@@ -2,13 +2,13 @@
 
 This project is an online Integrated Development Environment (IDE) using an AWS EKS cluster. It involves the following services:
 - **Frontend**: User interface for the IDE
-- **Backend**: Handles backend operations
 - **Init Service**: Initializes and prepares the environment for the user
+- **K8s**: Includes the nginx ingress controller
 - **Orchestrator Simple**: Manages Kubernetes resources for each user session
 - **Runner**: Executes user-written code in isolated environments
 
 ### Workflow
-1. **User Action**: The user selects a programming language (e.g., Node.js) and an ID (e.g., test5) on the frontend.
+1. **User Action**: The user selects a programming language (e.g., C++) and an ID (e.g., test5) on the frontend.
 2. **Init Service**: The request goes to the Init Service, which creates a folder named after the ID (e.g., test5) and copies the base code into this folder. The frontend shows a "booting" status.
 3. **Orchestrator Simple**: The frontend sends a request to `localhost:3002/start`. The Orchestrator Simple service handles this request, running a service YAML file to create a deployment, service, and ingress for the user with the given ID (e.g., test5). It also installs the runner image (deployed on Docker Hub) in the pods.
 4. **IDE Interface**: After these steps, the user will see a frontend interface similar to an IDE.
@@ -64,7 +64,6 @@ This project is an online Integrated Development Environment (IDE) using an AWS 
 
 ```plaintext
 ├── frontend
-├── backend
 ├── init-service
 ├── orchestrator-simple
 ├── k8s
